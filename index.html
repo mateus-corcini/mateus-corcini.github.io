@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Mateus Corcini · Analista de Segurança</title>
+<meta name="description" content="Mateus Corcini: Analista de Segurança da Informação, SOC / Blue Team e Resposta a Incidentes. Microsoft Defender, Entra ID, FortiGate, KQL, MITRE ATT&CK.">
+<meta property="og:title" content="Mateus Corcini · Analista de Segurança">
+<meta property="og:description" content="SOC / Blue Team · Resposta a Incidentes · Microsoft Defender, Entra ID, FortiGate">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>
+/* Layout: currículo como página única — cabeçalho fixo, herói com "whoami" e painel de status, depois seções em coluna larga com rótulo à esquerda */
+:root{
+  --paper:#F2F4F7; --sheet:#FFFFFF; --ink:#0E1A2B; --sub:#4F5E70; --rule:#D3DAE3;
+  --cobalt:#2244C2; --cobalt-wash:#E4E9FA; --on-cobalt:#FFFFFF; --hi:#9A5B00; --hi-wash:#FBEFD9; --ok:#17784A; --ok-wash:#DDF1E6;
+  --f-display:"Archivo","Arial Narrow",system-ui,sans-serif; --f-body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif; --f-mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0B1220; --sheet:#121B2C; --ink:#E6ECF5; --sub:#97A5B8; --rule:#24324A;
+  --cobalt:#93A9FF; --cobalt-wash:#1A2649; --on-cobalt:#0B1220; --hi:#F0B357; --hi-wash:#33260F; --ok:#5ECB92; --ok-wash:#13301F; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0B1220; --sheet:#121B2C; --ink:#E6ECF5; --sub:#97A5B8; --rule:#24324A;
+  --cobalt:#93A9FF; --cobalt-wash:#1A2649; --on-cobalt:#0B1220; --hi:#F0B357; --hi-wash:#33260F; --ok:#5ECB92; --ok-wash:#13301F; color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6}
+h1,h2,h3{font-family:var(--f-display);margin:0;line-height:1.08;text-wrap:balance}
+p{margin:0}
+a{color:var(--cobalt);text-underline-offset:3px}
+:focus-visible{outline:2px solid var(--cobalt);outline-offset:3px;border-radius:2px}
+.mono{font-family:var(--f-mono)}
+.lbl{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--sub)}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+[hidden]{display:none!important}
+
+/* header */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:11;background:var(--paper)}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
+header.top .wrap{display:flex;align-items:center;gap:20px;height:60px}
+.mark{font-family:var(--f-display);font-weight:900;font-stretch:125%;font-size:20px;text-decoration:none;color:var(--ink);letter-spacing:-.01em}
+.mark span{color:var(--cobalt)}
+nav.links{display:flex;gap:18px;margin-left:auto;font-size:14px}
+nav.links a{color:var(--sub);text-decoration:none}
+nav.links a:hover{color:var(--ink)}
+.lang{display:flex;border:1px solid var(--rule);border-radius:4px;overflow:hidden}
+.lang button{border:0;background:transparent;color:var(--sub);font:600 12px var(--f-mono);padding:6px 10px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+
+/* hero */
+.hero{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:40px;align-items:end;padding-block:56px 48px}
+.whoami{font-family:var(--f-mono);font-size:14px;color:var(--sub)}
+.whoami b{color:var(--cobalt);font-weight:500}
+.hero h1{font-size:clamp(44px,8vw,96px);font-weight:900;font-stretch:125%;letter-spacing:-.025em;text-transform:uppercase;line-height:.9;margin-top:14px}
+.hero h1 span{display:block;color:var(--cobalt)}
+.role{font-family:var(--f-display);font-size:clamp(18px,2.2vw,22px);font-weight:600;font-stretch:105%;margin-top:18px}
+.summary{color:var(--sub);max-width:60ch;margin-top:14px}
+.cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+.btn{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--cobalt);background:var(--cobalt);color:var(--on-cobalt);padding:10px 16px;border-radius:4px;font-weight:600;font-size:14.5px;text-decoration:none;cursor:pointer;font-family:inherit}
+.btn.ghost{background:transparent;color:var(--cobalt)}
+.status{background:var(--sheet);border:1px solid var(--rule);border-radius:6px;overflow:hidden}
+.status .bar{display:flex;align-items:center;gap:8px;padding:10px 14px;border-bottom:1px solid var(--rule);font-family:var(--f-mono);font-size:12px;color:var(--sub)}
+.status .dot{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 3px var(--ok-wash)}
+.status dl{margin:0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:0}
+.status dt,.status dd{padding:10px 14px;border-bottom:1px solid var(--rule);margin:0;font-size:14.5px}
+.status dt{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--sub);padding-top:12px}
+.status dl > :nth-last-child(-n+2){border-bottom:0}
+
+/* sections */
+section.sec{display:grid;grid-template-columns:200px minmax(0,1fr);gap:32px;padding-block:44px;border-top:2px solid var(--ink);scroll-margin-top:70px}
+.sec h2{font-size:28px;font-weight:800;font-stretch:112%}
+.sec .side{display:flex;flex-direction:column;gap:6px}
+.skills{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 32px}
+.skills h3{font-size:15px;font-family:var(--f-mono);font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--sub);margin-bottom:8px}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tags span{background:var(--sheet);border:1px solid var(--rule);border-radius:3px;padding:3px 9px;font-size:14px}
+.job{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 20px;padding-bottom:26px;margin-bottom:26px;border-bottom:1px solid var(--rule)}
+.job:last-child{border-bottom:0;margin-bottom:0;padding-bottom:0}
+.job h3{font-size:21px;font-stretch:105%}
+.job .org{color:var(--cobalt);font-weight:600}
+.job .when{font-family:var(--f-mono);font-size:13px;color:var(--sub);white-space:nowrap;text-align:right}
+.job ul{grid-column:1/-1;margin:10px 0 0;padding-left:20px;display:flex;flex-direction:column;gap:6px;max-width:78ch}
+.earlier{display:flex;flex-direction:column;gap:8px;font-size:15px}
+.earlier b{font-weight:600}
+.projects{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.pj{background:var(--sheet);border:1px solid var(--rule);border-radius:6px;padding:20px;display:flex;flex-direction:column;gap:10px;text-decoration:none;color:var(--ink);min-width:0}
+a.pj:hover{border-color:var(--cobalt)}
+.pj h3{font-size:20px;font-stretch:108%}
+.pj p{color:var(--sub);font-size:15px}
+.pj .go{font-family:var(--f-mono);font-size:12.5px;color:var(--cobalt);margin-top:auto;word-break:break-all}
+.pj.feat{grid-column:1/-1;border-color:var(--cobalt);background:linear-gradient(var(--cobalt-wash),var(--cobalt-wash)) top/100% 4px no-repeat,var(--sheet)}
+.list{display:flex;flex-direction:column}
+.li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;padding:12px 0;border-bottom:1px solid var(--rule)}
+.li:last-child{border-bottom:0}
+.li b{font-weight:600}
+.li span.s{color:var(--sub)}
+.li .d{font-family:var(--f-mono);font-size:13px;color:var(--sub);white-space:nowrap}
+.cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px}
+.contact{display:flex;flex-direction:column;gap:14px}
+.mail{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.mail code{font-family:var(--f-mono);font-size:15px;background:var(--sheet);border:1px solid var(--rule);padding:8px 12px;border-radius:4px;user-select:all}
+footer{padding-block:28px 40px;border-top:1px solid var(--rule);font-size:13.5px;color:var(--sub);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+@media (max-width:860px){
+  nav.links{display:none}
+  .lang{margin-left:auto}
+  .hero{grid-template-columns:minmax(0,1fr);padding-top:36px}
+  section.sec{grid-template-columns:minmax(0,1fr);gap:18px}
+  .skills,.projects,.cols{grid-template-columns:minmax(0,1fr)}
+  .job{grid-template-columns:minmax(0,1fr)}
+  .job .when{text-align:left}
+}
+@media print{header.top{display:none}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="mark" href="#top">M<span>C</span></a>
+  <nav class="links" id="nav"></nav>
+  <div class="lang" role="group" aria-label="Idioma / Language"><button type="button" data-lang="pt" aria-pressed="true">PT</button><button type="button" data-lang="en" aria-pressed="false">EN</button></div>
+</div></header>
+<main class="wrap" id="top"></main>
+<div class="wrap"><footer id="foot"></footer></div>
+
+<script>
+const T = {
+ pt: {
+  html: "pt-BR", nav: [["sobre","Sobre"],["competencias","Competências"],["experiencia","Experiência"],["projetos","Projetos"],["certificacoes","Certificações"],["contato","Contato"]],
+  role: "Analista de Segurança da Informação · SOC / Blue Team · Resposta a Incidentes",
+  summary: "Cinco anos em TI e atuação atual em monitoramento, triagem e resposta a incidentes (SOC N1) com Microsoft Defender, Netskope e FortiGate. Investigo autenticações anômalas e tráfego suspeito por correlação de logs, e administro identidades no Active Directory e Entra ID com least privilege. Pós-graduando em Cibersegurança.",
+  cv: "Baixar CV (PDF)", cvFile: "cv-mateus-corcini-pt.pdf",
+  status: "status: disponível", st: [["Busco","Analista SOC / Blue Team"],["Local","Paraná, Brasil · remoto ou híbrido"],["Stack","Defender XDR · Entra ID · Intune · FortiGate · Wazuh"],["Estudando","KQL, Microsoft Sentinel, threat hunting"]],
+  h: { sobre: "Sobre", competencias: "Competências", experiencia: "Experiência", projetos: "Projetos", certificacoes: "Certificações", formacao: "Formação", contato: "Contato" },
+  about: ["Comecei em suporte e infraestrutura e, ao longo de cinco anos, fui assumindo cada vez mais a parte de segurança: hardening de servidores Linux e Windows, gestão de acessos e, hoje, monitoramento e resposta a incidentes no dia a dia.", "Gosto de transformar alerta em história: entender o que aconteceu, com quais evidências, e documentar de um jeito que outra pessoa consiga agir. Fora do trabalho, construo ferramentas de análise de ameaças e publico meus laboratórios e detecções no GitHub."],
+  skills: [["Security Operations",["Microsoft Defender for Endpoint / XDR","Netskope","Wazuh (SIEM)","Triagem de alertas","Análise de logs","Resposta a incidentes (NIST)","MITRE ATT&CK"]],["Identidade e endpoint",["Active Directory","Microsoft Entra ID","Microsoft Intune","IAM e least privilege","Hardening Windows e Linux"]],["Redes",["FortiGate","VPN","TCP/IP","Wireshark","Nmap","Análise de tráfego"]],["Sistemas, nuvem e código",["Windows Server","Linux (Red Hat, Ubuntu)","AWS (básico)","SQL","Python","Bash"]],["Frameworks e normas",["NIST CSF","NIST SP 800-61","ISO/IEC 27001:2022","LGPD","MITRE ATT&CK"]],["Idiomas",["Português (nativo)","Inglês técnico"]]],
+  jobs: [
+   { r: "Analista de TI (Segurança / SOC N1)", o: "Gowd", w: "abr/2025 – atual", b: ["Monitoramento e triagem de alertas de segurança no Microsoft Defender e no Netskope, classificando por severidade e escalonando incidentes críticos dentro do SLA.","Análise inicial, classificação e escalonamento de incidentes conforme severidade e impacto, com registro e rastreabilidade em ferramenta ITSM.","Investigação de acessos anômalos, tentativas de autenticação e navegação indevida, correlacionando eventos do Entra ID, Defender, Netskope e FortiGate.","Análise de eventos de firewall FortiGate para identificar tráfego suspeito e apoiar decisões de bloqueio.","Revisão de permissões no Active Directory e Entra ID com base em least privilege.","Políticas de compliance e hardening via Microsoft Intune; suporte a acesso remoto seguro via VPN."] },
+   { r: "Analista de TI", o: "Aiqfome", w: "abr/2022 – abr/2025", b: ["Administração de servidores Windows e Linux com foco em segurança e alta disponibilidade.","Hardening de servidores Linux e Windows, reduzindo a superfície de ataque.","Monitoramento de rede e mitigação de incidentes de segurança, reduzindo o tempo de resposta.","Gestão de contas e permissões no Active Directory.","Projetos de melhoria contínua de segurança e atualização de políticas internas."] }],
+  earlierT: "Experiência anterior",
+  earlier: [["Auxiliar de Infraestrutura de TI","Varejocar (2021–2022) e Sabium Sistemas (2021): servidores, redes e Windows Server."],["Auxiliar de Sistemas","Aquário (2020): suporte ao ERP Senior, SQL e customizações em C++."]],
+  projects: [
+   { feat: 1, n: "Blue Team Portfolio", d: "Laboratórios de SOC, consultas KQL e regras Sigma mapeadas ao MITRE ATT&CK, e scripts Python de triagem (brute force, e-mails suspeitos, enriquecimento de IOCs). Publicado à medida que avanço nos estudos.", u: "https://github.com/Viscond-Rosfield/blue-team-portfolio", t: "github.com/Viscond-Rosfield/blue-team-portfolio" },
+   { n: "ThreatLens", d: "Meta-agregador open source para análise de malware: consulta VirusTotal e MetaDefender em uma interface, com cache, histórico e API. Python, FastAPI e Docker.", u: "https://github.com/Viscond-Rosfield/framework-security", t: "github.com/Viscond-Rosfield/framework-security" },
+   { n: "SecureWatch", d: "Plataforma web que roda no navegador para analisar URLs (VirusTotal, URLhaus), hashes e arquivos, reputação de IPs e CVEs.", u: "https://viscond-rosfield.github.io/securewatch-/", t: "viscond-rosfield.github.io/securewatch-" },
+   { n: "Academia SOC", d: "Plataforma de estudo com aulas, laboratórios interativos de consultas sobre logs de ataques simulados, quizzes e simulador de triagem de alertas.", u: "https://viscond-rosfield.github.io/blue-team-portfolio/", t: "viscond-rosfield.github.io/blue-team-portfolio" },
+   { n: "Deck Anki Security+ (PT-BR)", d: "Tradução para português de um deck de flashcards da CompTIA Security+ SY0-701, compartilhada com a comunidade.", u: "https://github.com/Viscond-Rosfield/CompTIA-Security-SY0-701-Deck-Anki-em-Portugu-s-PT-BR-", t: "github.com/Viscond-Rosfield/CompTIA-Security…" }],
+  certs: [["ISO/IEC 27001:2022 Information Security Associate","SkillFront","jan/2026"],["Analista SOC (IC-SOC-380)","IBSEC","jan/2026"],["Junior Cybersecurity Analyst Career Path","Cisco Networking Academy","jan/2026"],["C3SA Premium Edition","C3SA Cyber Security & Audit","fev/2025"],["Cybersecurity","FIAP","out/2024"]],
+  coursesT: "Cursos", courses: "Resposta a Incidentes com base no NIST · Microsoft Intune (Microsoft Learn) · Nmap e Wireshark · Linux Essentials e Fundamentals (4Linux) · Administração de Servidores e Redes · Shell Scripting · SQL",
+  edu: [["Pós-graduação em Cibersegurança","Faculdade Metropolitana","2025 – 2026"],["Tecnólogo em Análise e Desenvolvimento de Sistemas","UniCesumar","2019 – 2021"]],
+  contactP: "Aberto a vagas de Analista SOC, Blue Team e Resposta a Incidentes, no Brasil ou remotas. O jeito mais rápido de falar comigo é pelo LinkedIn ou por e-mail.",
+  copy: "Copiar e-mail", copied: "E-mail copiado", foot: "Hospedado no GitHub Pages."
+ },
+ en: {
+  html: "en", nav: [["sobre","About"],["competencias","Skills"],["experiencia","Experience"],["projetos","Projects"],["certificacoes","Certifications"],["contato","Contact"]],
+  role: "Security Analyst · SOC / Blue Team · Incident Response",
+  summary: "Five years in IT, currently doing security monitoring, alert triage and incident response (SOC Tier 1) with Microsoft Defender, Netskope and FortiGate. I investigate anomalous sign-ins and suspicious traffic through log correlation and manage identities in Active Directory and Entra ID under least privilege. Pursuing a postgraduate degree in Cybersecurity.",
+  cv: "Download CV (PDF)", cvFile: "cv-mateus-corcini-en.pdf",
+  status: "status: available", st: [["Looking for","SOC Analyst / Blue Team"],["Location","Paraná, Brazil · remote or hybrid"],["Stack","Defender XDR · Entra ID · Intune · FortiGate · Wazuh"],["Learning","KQL, Microsoft Sentinel, threat hunting"]],
+  h: { sobre: "About", competencias: "Skills", experiencia: "Experience", projetos: "Projects", certificacoes: "Certifications", formacao: "Education", contato: "Contact" },
+  about: ["I started in IT support and infrastructure and, over five years, took on more and more of the security work: hardening Linux and Windows servers, access management and, today, day-to-day monitoring and incident response.", "I like turning an alert into a story: what happened, based on which evidence, documented so someone else can act on it. Outside work I build threat-analysis tools and publish my labs and detections on GitHub."],
+  skills: [["Security operations",["Microsoft Defender for Endpoint / XDR","Netskope","Wazuh (SIEM)","Alert triage","Log analysis","Incident response (NIST)","MITRE ATT&CK"]],["Identity and endpoint",["Active Directory","Microsoft Entra ID","Microsoft Intune","IAM and least privilege","Windows and Linux hardening"]],["Networking",["FortiGate","VPN","TCP/IP","Wireshark","Nmap","Traffic analysis"]],["Systems, cloud and code",["Windows Server","Linux (Red Hat, Ubuntu)","AWS (basic)","SQL","Python","Bash"]],["Frameworks",["NIST CSF","NIST SP 800-61","ISO/IEC 27001:2022","LGPD (Brazil's GDPR)","MITRE ATT&CK"]],["Languages",["Portuguese (native)","English (technical)"]]],
+  jobs: [
+   { r: "IT Analyst (Security / SOC Tier 1)", o: "Gowd", w: "Apr 2025 – Present", b: ["Monitor and triage security alerts in Microsoft Defender and Netskope, prioritizing by severity and escalating critical incidents within SLA.","Perform initial analysis, classification and escalation of incidents by severity and impact, documenting each case in the ITSM platform.","Investigate anomalous access, authentication attempts and policy-violating browsing by correlating Entra ID, Defender, Netskope and FortiGate events.","Analyze FortiGate firewall events to identify suspicious traffic and support blocking decisions.","Review Active Directory and Entra ID permissions under least privilege.","Enforce compliance and hardening policies through Microsoft Intune; support secure remote access over VPN."] },
+   { r: "IT Analyst", o: "Aiqfome", w: "Apr 2022 – Apr 2025", b: ["Administered Windows and Linux servers with a focus on security and high availability.","Hardened Linux and Windows servers, reducing the attack surface.","Monitored the network and helped mitigate security incidents, reducing response time.","Managed Active Directory accounts and permissions.","Contributed to continuous security improvement projects and policy updates."] }],
+  earlierT: "Earlier experience",
+  earlier: [["IT Infrastructure Assistant","Varejocar (2021–2022) and Sabium Sistemas (2021): servers, networking and Windows Server."],["Systems Assistant","Aquário (2020): Senior ERP support, SQL and C++ customizations."]],
+  projects: [
+   { feat: 1, n: "Blue Team Portfolio", d: "SOC labs, KQL queries and Sigma rules mapped to MITRE ATT&CK, and Python triage tooling (brute force, suspicious e-mails, IOC enrichment). Updated as I progress.", u: "https://github.com/Viscond-Rosfield/blue-team-portfolio", t: "github.com/Viscond-Rosfield/blue-team-portfolio" },
+   { n: "ThreatLens", d: "Open-source malware analysis meta-aggregator: queries VirusTotal and MetaDefender in one interface, with caching, history and an API. Python, FastAPI and Docker.", u: "https://github.com/Viscond-Rosfield/framework-security", t: "github.com/Viscond-Rosfield/framework-security" },
+   { n: "SecureWatch", d: "Browser-based platform to analyze URLs (VirusTotal, URLhaus), hashes and files, IP reputation and CVEs.", u: "https://viscond-rosfield.github.io/securewatch-/", t: "viscond-rosfield.github.io/securewatch-" },
+   { n: "Academia SOC", d: "Study platform with lessons, interactive query labs over simulated attack logs, quizzes and an alert-triage simulator (in Portuguese).", u: "https://viscond-rosfield.github.io/blue-team-portfolio/", t: "viscond-rosfield.github.io/blue-team-portfolio" },
+   { n: "Security+ Anki deck (PT-BR)", d: "Portuguese translation of a CompTIA Security+ SY0-701 flashcard deck, shared with the community.", u: "https://github.com/Viscond-Rosfield/CompTIA-Security-SY0-701-Deck-Anki-em-Portugu-s-PT-BR-", t: "github.com/Viscond-Rosfield/CompTIA-Security…" }],
+  certs: [["ISO/IEC 27001:2022 Information Security Associate","SkillFront","Jan 2026"],["SOC Analyst (IC-SOC-380)","IBSEC — Brazilian Cybersecurity Institute","Jan 2026"],["Junior Cybersecurity Analyst Career Path","Cisco Networking Academy","Jan 2026"],["C3SA Premium Edition","C3SA Cyber Security & Audit","Feb 2025"],["Cybersecurity","FIAP","Oct 2024"]],
+  coursesT: "Training", courses: "NIST-based Incident Response · Microsoft Intune (Microsoft Learn) · Nmap and Wireshark · Linux Essentials and Fundamentals (4Linux) · Server and Network Administration · Shell Scripting · SQL",
+  edu: [["Postgraduate Specialization in Cybersecurity","Faculdade Metropolitana","2025 – 2026"],["Associate Degree in Systems Analysis and Development","UniCesumar","2019 – 2021"]],
+  contactP: "Open to SOC Analyst, Blue Team and Incident Response roles, in Brazil or remote. The fastest way to reach me is LinkedIn or e-mail.",
+  copy: "Copy e-mail", copied: "E-mail copied", foot: "Hosted on GitHub Pages."
+ }
+};
+const EMAIL = "mateucorcini991@gmail.com", LI = "https://www.linkedin.com/in/mateus-corcini", GH = "https://github.com/Viscond-Rosfield";
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+function render(lang) {
+  const t = T[lang]; document.documentElement.lang = t.html;
+  document.querySelectorAll(".lang button").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang === lang));
+  document.getElementById("nav").innerHTML = t.nav.map(([id, n]) => `<a href="#${id}">${n}</a>`).join("");
+  const sec = (id, title, body) => `<section class="sec" id="${id}"><div class="side"><h2>${title}</h2></div><div>${body}</div></section>`;
+  document.getElementById("top").innerHTML = `
+  <div class="hero"><div>
+    <div class="whoami">$ whoami<br><b>mateus.corcini</b> · soc analyst · blue team</div>
+    <h1>Mateus<span>Corcini</span></h1>
+    <p class="role">${esc(t.role)}</p>
+    <p class="summary">${esc(t.summary)}</p>
+    <div class="cta"><a class="btn" href="${t.cvFile}" download>${t.cv}</a><a class="btn ghost" href="${LI}" target="_blank" rel="noopener">LinkedIn</a><a class="btn ghost" href="${GH}" target="_blank" rel="noopener">GitHub</a></div>
+  </div>
+  <aside class="status" aria-label="Status"><div class="bar"><span class="dot"></span>${t.status}</div><dl>${t.st.map(([k, v]) => `<dt>${k}</dt><dd>${esc(v)}</dd>`).join("")}</dl></aside></div>
+  ${sec("sobre", t.h.sobre, `<div style="display:flex;flex-direction:column;gap:14px;max-width:68ch">${t.about.map(p => `<p>${esc(p)}</p>`).join("")}</div>`)}
+  ${sec("competencias", t.h.competencias, `<div class="skills">${t.skills.map(([g, l]) => `<div><h3>${esc(g)}</h3><div class="tags">${l.map(x => `<span>${esc(x)}</span>`).join("")}</div></div>`).join("")}</div>`)}
+  ${sec("experiencia", t.h.experiencia, t.jobs.map(j => `<div class="job"><div><h3>${esc(j.r)}</h3><span class="org">${esc(j.o)}</span></div><span class="when">${esc(j.w)}</span><ul>${j.b.map(x => `<li>${esc(x)}</li>`).join("")}</ul></div>`).join("") + `<div class="earlier"><span class="lbl">${t.earlierT}</span>${t.earlier.map(([r, d]) => `<p><b>${esc(r)}</b> · ${esc(d)}</p>`).join("")}</div>`)}
+  ${sec("projetos", t.h.projetos, `<div class="projects">${t.projects.map(p => `<a class="pj ${p.feat ? "feat" : ""}" href="${p.u}" target="_blank" rel="noopener"><h3>${esc(p.n)}</h3><p>${esc(p.d)}</p><span class="go">${esc(p.t)} →</span></a>`).join("")}</div>`)}
+  ${sec("certificacoes", t.h.certificacoes, `<div class="cols"><div class="list">${t.certs.map(([n, o, d]) => `<div class="li"><span><b>${esc(n)}</b><br><span class="s">${esc(o)}</span></span><span class="d">${d}</span></div>`).join("")}</div>
+    <div style="display:flex;flex-direction:column;gap:22px"><div><span class="lbl">${t.h.formacao}</span><div class="list">${t.edu.map(([n, o, d]) => `<div class="li"><span><b>${esc(n)}</b><br><span class="s">${esc(o)}</span></span><span class="d">${d}</span></div>`).join("")}</div></div>
+    <div><span class="lbl">${t.coursesT}</span><p class="s" style="color:var(--sub);font-size:15px;margin-top:8px">${esc(t.courses)}</p></div></div></div>`)}
+  ${sec("contato", t.h.contato, `<div class="contact"><p style="max-width:62ch">${esc(t.contactP)}</p><div class="mail"><code id="mail">${EMAIL}</code><button class="btn ghost" id="copy" type="button">${t.copy}</button></div><div class="cta" style="margin-top:0"><a class="btn" href="${LI}" target="_blank" rel="noopener">LinkedIn</a><a class="btn ghost" href="${GH}" target="_blank" rel="noopener">GitHub</a><a class="btn ghost" href="${t.cvFile}" download>${t.cv}</a></div></div>`)}`;
+  document.getElementById("foot").innerHTML = `<span>© 2026 Mateus Corcini</span><span>${t.foot}</span>`;
+  document.getElementById("copy").onclick = async (e) => {
+    try { await navigator.clipboard.writeText(EMAIL); e.target.textContent = t.copied; }
+    catch (err) { const r = document.createRange(); r.selectNodeContents(document.getElementById("mail")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); }
+  };
+}
+let lang = "pt";
+try { lang = localStorage.getItem("lang") || ((navigator.language || "").toLowerCase().startsWith("pt") ? "pt" : "en"); } catch (e) {}
+document.querySelectorAll(".lang button").forEach(b => b.onclick = () => { lang = b.dataset.lang; try { localStorage.setItem("lang", lang); } catch (e) {} render(lang); });
+render(lang);
+</script>
+</body>
+</html>
